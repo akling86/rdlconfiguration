@@ -13,6 +13,7 @@ service ClassManagerService @(impl:'./class-manager.js'){
     @readonly
     entity ParentClasses as projection on rdl.ParentClasses;
 
+
     entity Class as SELECT from rdl.Class{
         @sap.insertable : 'false'
 		@sap.updatable : 'false'
