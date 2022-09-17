@@ -38,8 +38,13 @@ module.exports = (srv) => {
                 await cds.run(`SELECT level,drilldown FROM "ClassHierarchy" where id = ?`,[cl.ID])
                     .then(
                         response => {
-                            cl.level = response[0].level;
-                            cl.drilldown = response[0].drilldown
+                            if(response[0]){
+                                cl.level = response[0].level;
+                                cl.drilldown = response[0].drilldown;
+                            }else{
+                                cl.level = 0;
+                                cl.drilldown = 'leaf';
+                            }
                         }
                     );
             }
