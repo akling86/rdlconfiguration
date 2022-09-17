@@ -1,0 +1,1 @@
+using ClassManagerService as service from '../../srv/class-manager';

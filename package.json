@@ -1,0 +1,60 @@
+{
+  "name": "rdlconfiguration",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^5",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
+    "cds-dbm": "^0.0.36",
+    "cds-pg": "^0.1.30",
+    "cds-swagger-ui-express": "^0.5.0",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@sap/ux-specification": "^1.102.6",
+    "mbt": "~1.2.1"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "dialect": "plain",
+        "kind": "database"
+      },
+      "database": {
+        "impl": "cds-pg",
+        "model": [
+          "srv"
+        ],
+        "credentials": {
+          "host": "localhost",
+          "port": 5432,
+          "database": "rdlconfig",
+          "user": "postgres",
+          "password": "postgres"
+        }
+      }
+    },
+    "migrations": {
+      "db": {
+        "schema": {
+          "default": "public",
+          "clone": "_cdsdbm_clone",
+          "reference": "_cdsdbm_ref"
+        },
+        "deploy": {
+          "tmpFile": "tmp/_autodeploy.json",
+          "undeployFile": "db/undeploy.json"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "watch-classmanager": "cds watch --open classmanager/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/classmanager"
+  ]
+}
