@@ -52,9 +52,11 @@
     }
   },
   "scripts": {
-    "watch-classmanager": "cds watch --open classmanager/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-classmanager": "cds watch --open classmanager/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-rdloverview": "cds watch --open rdloverview/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
-    "app/classmanager"
+    "app/classmanager",
+    "app/rdloverview"
   ]
 }

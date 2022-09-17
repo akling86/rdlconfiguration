@@ -153,7 +153,9 @@
                                     }
                                 }
                             },
-                            "initialLoad": "Enabled"
+                            "initialLoad": "Enabled",
+                            "hideFilterBar": false,
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#table"
                         }
                     }
                 },
@@ -163,7 +165,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "editableHeaderContent": false,
+                            "editableHeaderContent": true,
                             "entitySet": "Class"
                         }
                     }

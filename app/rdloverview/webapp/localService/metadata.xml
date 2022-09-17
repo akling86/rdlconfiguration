@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml">
+        <edmx:Include Alias="Analytics" Namespace="com.sap.vocabularies.Analytics.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="RDLOverviewService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Classes" EntityType="RDLOverviewService.Classes"/>
+            </EntityContainer>
+            <EntityType Name="Classes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="class_type" Type="Edm.String" MaxLength="16"/>
+                <Property Name="core_class" Type="Edm.String" MaxLength="128"/>
+                <Property Name="model_type" Type="Edm.String" MaxLength="16"/>
+                <Property Name="cc" Type="Edm.Int32"/>
+            </EntityType>
+            <Annotations Target="RDLOverviewService.Classes">
+                <Annotation Term="UI.Chart" Qualifier="ClassByType">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Classes By Class Type"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="cc"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="class_type"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="ClassByCoreClass">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Classes by Core Class"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="core_class"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="class_type"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="ClassByModelType">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Classes By Model Type"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="cc"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="model_type"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="Classes">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" String="classmanager"/>
+                            <PropertyValue Property="Action" String="app"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="RDLOverviewService.EntityContainer/Classes">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="RDLOverviewService.Classes/ID">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="RDLOverviewService.Classes/class_type">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Class Type"/>
+            </Annotations>
+            <Annotations Target="RDLOverviewService.Classes/core_class">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Core Class"/>
+            </Annotations>
+            <Annotations Target="RDLOverviewService.Classes/model_type">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Model Type"/>
+            </Annotations>
+            <Annotations Target="RDLOverviewService.Classes/cc">
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Total"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
