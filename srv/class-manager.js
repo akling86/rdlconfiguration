@@ -3,6 +3,11 @@
 const cds = require("@sap/cds");
 
 module.exports = (srv) => {
+
+    srv.before('READ', '*', async (req) => {
+        console.log(req.user);
+    })
+
     srv.before('CREATE', 'Class', async (req) => {
         const {
             ID,

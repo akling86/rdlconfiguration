@@ -14,7 +14,9 @@ service ClassManagerService @(impl:'./class-manager.js'){
     entity ParentClasses as projection on rdl.ParentClasses;
 
 
-    entity Class as SELECT from rdl.Class{
+    entity Class @(restrict: [ 
+    { grant: ['READ','WRITE'], to: 'authenticated-user' , where: '$user.read = 1' }])
+    as SELECT from rdl.Class{
         @sap.insertable : 'false'
 		@sap.updatable : 'false'
         @sap.hierarchy.node.for: 'ID'
